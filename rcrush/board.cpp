@@ -17,13 +17,14 @@ Board::Board() {};
 
 Board::~Board() 
 {
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-            delete tileBoard[i][j];
-            tileBoard[i][j] = nullptr;
-        }
-    }
-
+   for (int i = 0; i < 8; i++)
+   {
+      for (int j = 0; j < 8; j++)
+      {
+         delete tileBoard[i][j];
+         tileBoard[i][j] = nullptr;
+      }
+   }
     buttons.clear();        
 };
 
@@ -41,9 +42,10 @@ int Board::HorizMatch(int i, int j)
             j++;
         }
         else
-            break;
+	{
+           break;
+	}
     }
-
     return matches;
 }
 
