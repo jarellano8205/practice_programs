@@ -17,14 +17,14 @@ Board::Board() {};
 
 Board::~Board() 
 {
-   for (int i = 0; i < 8; i++)
-   {
-      for (int j = 0; j < 8; j++)
-      {
-         delete tileBoard[i][j];
-         tileBoard[i][j] = nullptr;
-      }
-   }
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 8; j++)
+        {
+            delete tileBoard[i][j];
+            tileBoard[i][j] = nullptr;
+        }
+    }
     buttons.clear();        
 };
 
@@ -35,16 +35,16 @@ int Board::HorizMatch(int i, int j)
     //check that it's in the bounds of the board
     while (j + 1 <= 7)
     {
-	// check for the color match
+	    // check for the color match
         if (baseTile->color == tileBoard[i][j + 1]->color) 
         { 
             matches++;
             j++;
         }
         else
-	{
+	    {
            break;
-	}
+	    }
     }
     return matches;
 }
@@ -57,19 +57,22 @@ int Board::VertMatch(int i, int j)
     while (i + 1 <= 7)
     {
         // check for the color match
-	if (baseTile->color == tileBoard[i + 1][j]->color) 
+	    if (baseTile->color == tileBoard[i + 1][j]->color) 
         { 
             matches++;
             i++;
         }
         else
+        {
             break;
+        }
     }
 
     return matches;
 }
 
-int Board::ScoreMatch(int matches, int score) {
+int Board::ScoreMatch(int matches, int score)
+{
     switch (matches)
     {
         default:
@@ -103,15 +106,19 @@ void Board::DrawAll()
 {
     // Loop through all buttons and use their draw functions to draw them
     for (Button *b : buttons)
+    {
         b->draw();
+    }
     // Draw all gametiles
     for (int i = 0; i < 8; i++)
     {
         for (int j = 0; j < 8; j++)
         {
             // if a tile == nullptr it's an empty tile 
-	    if (tileBoard[i][j] == nullptr)
+	        if (tileBoard[i][j] == nullptr)
+            {
                 continue;
+            }
             // draw each tile by setting their x and y positions from the i + j
 	    // position in the board + starting position of the board
             tileBoard[i][j]->x = 160+60*j;
@@ -119,36 +126,43 @@ void Board::DrawAll()
             tileBoard[i][j]->draw();
             // Draw outlines if hovered
             if (tileBoard[i][j]->isHovered())
+            {
                 tileBoard[i][j]->drawOutline();
+            }
         }
     }
     // Draw the legend
     DrawLegend();
     // Game End Draw Event
-    if (turnsRemaining <= 0) {
+    if (turnsRemaining <= 0)
+    {
         DrawTextString("GAME OVER", glutGet(GLUT_WINDOW_WIDTH)/2, 
                 actualY(glutGet(GLUT_WINDOW_HEIGHT)/2), White);
     }
 }
 
-string Board::CheckClick(int xPos, int yPos) {
+string Board::CheckClick(int xPos, int yPos)
+{
     // Check all buttons for one that contains xPos and yPos, return its name
-    for (Button *b : buttons) { 
+    for (Button *b : buttons)
+    { 
         if (b->contains(xPos, yPos))
+        {
             return b->label;
+        }
     }
 
     // Return "None" for no button found
     return "None";
 }
 
-GameTile* Board::GenerateRandomTile() {
+GameTile* Board::GenerateRandomTile()
+{
     // ASSUMING RANDOM SEED IS ALREADY GENERATED
     GameTile *tile = nullptr;
     const float *color;
     int colorRoll = rand() % 3;
     int shapeRoll = rand() % 3;
-
 
     // Get random RGB color
     switch(colorRoll) 
@@ -222,7 +236,8 @@ void Board::GenerateNewBoard()
     glutSwapBuffers();
 }
 
-void Board::CheckMatches() {
+void Board::CheckMatches()
+{
     GameTile *tile;
     string shape;
     const float *color;
@@ -230,69 +245,80 @@ void Board::CheckMatches() {
     int points = 0;
 
     // Loop through all tiles in the tileboard
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-	    tile = tileBoard[i][j];
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 8; j++)
+        {
+	        tile = tileBoard[i][j];
             shape = tile->shape;
             color = tile->color;
 
             // Set Score Multiplier
             if (color == Blue)
+            {
                 points = 25;
+            }
             else if (color == Red)
+            {
                 points = 30;
+            }
             else
-                points = 45; 
+            {
+                points = 45;
+            }
 
             // Score horizontal matches
             matches = HorizMatch(i,j);
+
             if (matches >= 3)
             {
                 points = ScoreMatch(matches, points);
                 // Delete matched tiles
                 for (int k = j; k < j+matches; k++)
                 {
-		    // enough matches were made for a delete + score, call
-		    // DrawRectangle to draw the highlight box around the
-		    // matched tiles x-Location, y-Location + tile size (55)
+		            // enough matches were made for a delete + score, call
+		            // DrawRectangle to draw the highlight box around the
+		            // matched tiles x-Location, y-Location + tile size (55)
                     DrawRectangle(tileBoard[i][k]->x, 
 				    actualY(tileBoard[i][k]->y), 
 				    tileBoard[i][k]->x+55, 
 				    actualY(tileBoard[i][k]->y+55), White);
-		    glutSwapBuffers();
-		    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-		    // delete matched tile and set to nullptr ('empty' tile)
-		    delete tileBoard[i][k];
+		            glutSwapBuffers();
+		            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		            // delete matched tile and set to nullptr ('empty' tile)
+		            delete tileBoard[i][k];
                     tileBoard[i][k] = nullptr;
                 }
+                
                 // call to update board to fill any 'empty' tiles and move the
-		// appropriate tiles down
+		        // appropriate tiles down
                 UpdateBoard();
                 score += points;
             }
 
             // Score vertical matches
             matches = VertMatch(i, j);
+            
             if (matches >= 3)
             {
                 points = ScoreMatch(matches, points);
                 for (int k = i; k < i+matches; k++)
                 {
-		    // enough matches were made for a delete + score, call
-		    // DrawRectangle to draw the highlight box around the
-		    // matched tiles x-Location, y-Location + tile size (55)
+		            // enough matches were made for a delete + score, call
+		            // DrawRectangle to draw the highlight box around the
+		            // matched tiles x-Location, y-Location + tile size (55)
                     DrawRectangle(tileBoard[k][j]->x, 
 				    actualY(tileBoard[k][j]->y), 
 				    tileBoard[k][j]->x+55, 
 				    actualY(tileBoard[k][j]->y+55), White);
-		    glutSwapBuffers();
-		    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-		    // delete matched tile and set to nullptr ('empty' tile)
-	  	    delete tileBoard[k][j];
+		            glutSwapBuffers();
+		            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		            // delete matched tile and set to nullptr ('empty' tile)
+	  	            delete tileBoard[k][j];
                     tileBoard[k][j] = nullptr;
                 }
-		// call to update board to fill any 'empty' tiles and move the
-		// appropriate tiles down
+		        // call to update board to fill any 'empty' tiles and move the
+		        // appropriate tiles down
                 UpdateBoard();
                 score += points;
             }
@@ -306,8 +332,8 @@ void Board::CheckHover(int xLoc, int yLoc)
     {
         for (int j = 0; j < 8; j++)
         {
-	    // call contains function to verify the hovered x-Location +
-	    // y-Location are points contained within a tile
+	        // call contains function to verify the hovered x-Location +
+	        // y-Location are points contained within a tile
             if (tileBoard[i][j]->contains(xLoc, yLoc))
             {
                 tileBoard[i][j]->toggleHover(true);
@@ -422,7 +448,8 @@ void Board::clockwiseSwap(GameTile *t)
     CheckMatches();
 }
 
-int Board::GetTurnsRemaining() {
+int Board::GetTurnsRemaining()
+{
     return turnsRemaining;
 }
 
@@ -432,7 +459,8 @@ int Board::GetTurnsRemaining() {
  * member function GenerateRandomTile and then moves the tile down and continues
  * until the board is full.
  ******************************************************************************/
-void Board::UpdateBoard() {
+void Board::UpdateBoard()
+{
     bool changed = false;
 
     // Fill first row of tiles
@@ -440,8 +468,8 @@ void Board::UpdateBoard() {
         if (tileBoard[0][j] == nullptr)
         {
             // if the tile is a nullptr then a new tile is generated and passed
-	    // the x and y coordinate. 
-	    tileBoard[0][j] = GenerateRandomTile();
+	        // the x and y coordinate. 
+	        tileBoard[0][j] = GenerateRandomTile();
             tileBoard[0][j]->x = 160 + 60 * j;
             tileBoard[0][j]->y = 0; 
         }
@@ -458,10 +486,10 @@ void Board::UpdateBoard() {
                 tileBoard[i][j]->x = 160 + 60 * j;
                 tileBoard[i][j]->y = 60 * i;
                 // if the tile below (i + 1) is empty (nullptr) then swap tiles 
-		swap(tileBoard[i][j], tileBoard[i + 1][j]);
+		        swap(tileBoard[i][j], tileBoard[i + 1][j]);
 		
-		// redraw the tiles after a swap is completed, with a small
-		// delay so the player can visually see the tiles 'falling'
+		        // redraw the tiles after a swap is completed, with a small
+		        // delay so the player can visually see the tiles 'falling'
                 glClear(GL_COLOR_BUFFER_BIT);
                 DrawAll();
                 glutSwapBuffers();
