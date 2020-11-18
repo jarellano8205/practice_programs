@@ -1,0 +1,132 @@
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:37:43 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:37:43 2020
+0.000036s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:38:23 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:38:23 2020
+0.000044s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:38:25 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:38:25 2020
+0.000047s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:38:28 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:38:28 2020
+0.000046s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:38:29 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:38:29 2020
+0.000045s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:38:30 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:38:30 2020
+0.000043s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:38:30 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:38:30 2020
+0.000038s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:57:38 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:57:38 2020
+0.000028s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:57:52 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:57:52 2020
+0.000038s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:58:21 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:58:21 2020
+0.000036s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:58:24 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:58:24 2020
+0.000038s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:58:25 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:58:25 2020
+0.000041s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:58:27 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:58:27 2020
+0.000036s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:58:28 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:58:28 2020
+0.000041s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:58:29 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:58:29 2020
+0.000042s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:58:29 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:58:29 2020
+0.000053s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:58:30 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:58:30 2020
+0.000036s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:58:31 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:58:31 2020
+0.000073s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:58:32 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:58:32 2020
+0.000038s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:58:33 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:58:33 2020
+0.000063s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:58:33 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:58:33 2020
+0.000040s
+
+completed: assign value 'i' to array of numbers::Wed Nov 18 11:58:34 2020
+0.000000s
+
+completed: print array of numbers::Wed Nov 18 11:58:34 2020
+0.000039s
+
