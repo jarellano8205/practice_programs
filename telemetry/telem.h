@@ -11,10 +11,10 @@ class StopWatch
 {
    std::chrono::system_clock::time_point timeLoc;
    std::chrono::duration<double> dur;
-
+   std::string taskDescription = "";
 public:
    StopWatch();
-   void start();
+   void start(std::string descr);
    void stop();
    void reset(); 
    void report();
