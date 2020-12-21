@@ -1,9 +1,16 @@
 #include "telem.h"
+#include <stdlib.h>
+#include <time.h>
+#include <fstream>
 
 int main(int argc, char *argv[])
 {
    StopWatch sw;
-// ----------------------------------------------------------
+   srand (time(0));
+   std::ofstream numberOutputFile;
+
+   numberOutputFile.open("numberOutput");
+   
    sw.start("create integer array 20 elements all set to 0");
 
    int numberArray[20] = {0};
@@ -11,7 +18,7 @@ int main(int argc, char *argv[])
    sw.stop();
    sw.reportToFile("output");
    sw.reset();
-// -----------------------------------------------------------
+   
    sw.start("create integer array 200 elements all set to 0");
 
    int numberArrayTwo[200] = {0};
@@ -19,10 +26,28 @@ int main(int argc, char *argv[])
    sw.stop();
    sw.reportToFile("output");
    sw.reset();
-// ------------------------------------------------------------
-   sw.start("create integer array 2000 elements all set to 0");
+   
+   sw.start("create integer array 2000 elements and gen. random numbers");
 
    int numberArrayThree[2000] = {0};
+
+   for (int i = 0 ; i < 2000 ; i++)
+   {
+      numberArrayThree[i] = rand() % 10000;
+   }
+
+   sw.stop();
+   sw.reportToFile("output");
+   sw.reset();
+
+   sw.start("print 2000 random numbers into numberOutput file");
+
+   for (int i = 0 ; i < 2000 ; i++)
+   {
+      numberOutputFile << numberArrayThree[i] << "\n";
+   }
+   numberOutputFile << std::endl;
+   numberOutputFile.close();
 
    sw.stop();
    sw.reportToFile("output");
