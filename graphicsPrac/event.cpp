@@ -13,10 +13,7 @@ Event::~Event() {}
 void DisplayEvent::doAction(TelemDisplay &telemDisplay)
 {
    glClear(GL_COLOR_BUFFER_BIT);
-
-   DrawTextString("Hello!", glutGet(GLUT_WINDOW_WIDTH)/2,
-   glutGet(GLUT_WINDOW_HEIGHT)/2, White); 
-   
+   telemDisplay.displayTime();
    glutSwapBuffers();
 }
 
