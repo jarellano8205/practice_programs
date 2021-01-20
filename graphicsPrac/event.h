@@ -50,4 +50,10 @@ public:
    void doAction(TelemDisplay &);
 };
 
+class ProgStart : public Event
+{
+public:
+   void doAction(TelemDisplay &);
+};
+
 #endif

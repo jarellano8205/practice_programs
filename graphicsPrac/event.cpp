@@ -12,9 +12,7 @@ Event::~Event() {}
  ******************************************************************************/
 void DisplayEvent::doAction(TelemDisplay &telemDisplay)
 {
-   glClear(GL_COLOR_BUFFER_BIT);
-   telemDisplay.displayTime();
-   glutSwapBuffers();
+  glClear(GL_COLOR_BUFFER_BIT); 
 }
 
 /***************************************************************************//**
@@ -56,5 +54,14 @@ void KeyboardEvent::doAction(TelemDisplay &telemDisplay)
    {
       glutLeaveMainLoop();
    }
+
+   if (key == RETURN_KEY)
+   {
+      telemDisplay.displayTime();
+   }
 }
 
+void ProgStart::doAction(TelemDisplay &telemDisplay)
+{
+   glutSetWindowTitle("FoxProwl - Telemetry");
+}
