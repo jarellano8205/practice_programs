@@ -44,3 +44,13 @@ void StopWatch::reportToFile(std::string fileName)
           << std::ctime(&timeCompleted) << std::endl;
    report.close();
 }
+
+std::stringstream StopWatch::reportSS()
+{
+   std::stringstream ss;
+   ss << "completed " << taskDescription << std::endl;
+   ss << std::fixed << dur.count() << "s\t\t" 
+      << std::ctime(&timeCompleted) << std::endl;
+
+   return ss;
+}

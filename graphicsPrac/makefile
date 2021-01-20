@@ -3,7 +3,8 @@ SOURCE = callbacks.cpp \
 		   telemDisplay.cpp \
          main.cpp \
          util.cpp \
-	      graphics.cpp
+	      graphics.cpp \
+         telem.cpp
 
 OBJS = $(SOURCE:.cpp=.o)
 

@@ -1,6 +1,6 @@
 #include "telem.h"
-#include <stdlib.h>
-#include <time.h>
+#include <stdlib.h> // included for: std::cout << fixed
+#include <time.h> // included for: srand time(0)
 
 int main(int argc, char *argv[])
 {
