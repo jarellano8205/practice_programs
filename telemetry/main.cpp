@@ -1,13 +1,13 @@
 #include "telem.h"
 #include <stdlib.h>
 #include <time.h>
-#include <fstream>
 
 int main(int argc, char *argv[])
 {
    StopWatch sw;
    srand (time(0));
    std::ofstream numberOutputFile;
+   std::stringstream sstream;
 
    numberOutputFile.open("numberOutput");
    
@@ -53,5 +53,7 @@ int main(int argc, char *argv[])
    sw.reportToFile("output");
    sw.reset();
 
+   sstream = sw.reportSS();
+   std::cout << sstream.str().c_str();
    return 0;
 }
