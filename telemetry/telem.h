@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 
 class StopWatch
 {
@@ -19,7 +20,8 @@ public:
    void stop();
    void reset(); 
    void report();
-   void reportToFile(std::string fileName); 
+   void reportToFile(std::string fileName);
+   std::stringstream reportSS(); 
 };
 
 #endif
