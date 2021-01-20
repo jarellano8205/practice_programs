@@ -48,6 +48,7 @@ void initOpenGL(int argc, char** argv, int wCols, int wRows)
 
    glutReshapeFunc(reshape);
 
+   utilityCentral(new ProgStart());
 // This is the color which will be used to clear the display / back plane
 // when glClear() is called
    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
