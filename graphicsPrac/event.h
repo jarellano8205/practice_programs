@@ -9,6 +9,7 @@ using namespace std;
 
 #define ESCAPE_KEY 27
 #define RETURN_KEY 13
+#define R_KEY 114
 
 class Event
 {

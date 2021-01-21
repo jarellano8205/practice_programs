@@ -2,7 +2,7 @@
 
 int main(int argc, char** argv)
 {
-   initOpenGL(argc, argv, 640, 480);
+   initOpenGL(argc, argv, 720, 480);
 
    glutMainLoop();
    

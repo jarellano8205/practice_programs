@@ -13,6 +13,7 @@ public:
 
    void displayTasks();
    void addTask();
+   void resetTasks();
 };
 
 #endif

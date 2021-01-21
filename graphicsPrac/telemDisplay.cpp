@@ -1,16 +1,22 @@
 #include "telemDisplay.h"
-#include <iostream>
 
 TelemDisplay::TelemDisplay() {}
 
 void TelemDisplay::displayTasks()
 {
-   int y = 485;
+   int x = 5;
+   int y = (glutGet(GLUT_WINDOW_HEIGHT));
    glClear(GL_COLOR_BUFFER_BIT);
    for (auto items : completedTasks)
    {
-      y -= 15; 
-      DrawTextString(items, 5, y, Green);
+      y -= 15;
+      if (y < 15)
+      {
+         //y = (glutGet(GLUT_WINDOW_HEIGHT)) - 15;
+         //x += 415;
+         resetTasks();
+      }
+      DrawTextString(items, x, y, Orange);
    }
    glutSwapBuffers();
 }
@@ -22,8 +28,14 @@ void TelemDisplay::addTask()
 
    task.start("some task");
    int a = 5;
+   a += 5;
    task.stop();
    report = task.reportSS();
    completedTasks.push_back(report.str());
    task.reset();
+}
+
+void TelemDisplay::resetTasks()
+{
+   completedTasks.clear();
 }

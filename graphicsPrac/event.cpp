@@ -59,6 +59,11 @@ void KeyboardEvent::doAction(TelemDisplay &telemDisplay)
    {
       telemDisplay.addTask();
    }
+
+   if (key == R_KEY)
+   {
+      telemDisplay.resetTasks();
+   }
 }
 
 void ProgStart::doAction(TelemDisplay &telemDisplay)
