@@ -6,18 +6,21 @@ void TelemDisplay::displayTasks()
 {
    int x = 5;
    int y = (glutGet(GLUT_WINDOW_HEIGHT));
+
    glClear(GL_COLOR_BUFFER_BIT);
+
    for (auto items : completedTasks)
    {
       y -= 15;
+
       if (y < 15)
       {
-         //y = (glutGet(GLUT_WINDOW_HEIGHT)) - 15;
-         //x += 415;
          resetTasks();
       }
+
       DrawTextString(items, x, y, Orange);
    }
+
    glutSwapBuffers();
 }
 
@@ -30,6 +33,7 @@ void TelemDisplay::addTask()
    int a = 5;
    a += 5;
    task.stop();
+   task.reportToFile("output");
    report = task.reportSS();
    completedTasks.push_back(report.str());
    task.reset();
