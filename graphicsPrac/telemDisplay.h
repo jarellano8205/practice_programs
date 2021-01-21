@@ -3,13 +3,16 @@
 #include <GL/freeglut.h>
 #include "graphics.h"
 #include "telem.h"
+#include <vector>
 
 class TelemDisplay
 {
+   std::vector<std::string> completedTasks;
 public:
    TelemDisplay();
 
-   void displayTime();
+   void displayTasks();
+   void addTask();
 };
 
 #endif

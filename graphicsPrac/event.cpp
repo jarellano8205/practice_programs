@@ -12,7 +12,7 @@ Event::~Event() {}
  ******************************************************************************/
 void DisplayEvent::doAction(TelemDisplay &telemDisplay)
 {
-  glClear(GL_COLOR_BUFFER_BIT); 
+   telemDisplay.displayTasks();
 }
 
 /***************************************************************************//**
@@ -57,7 +57,7 @@ void KeyboardEvent::doAction(TelemDisplay &telemDisplay)
 
    if (key == RETURN_KEY)
    {
-      telemDisplay.displayTime();
+      telemDisplay.addTask();
    }
 }
 

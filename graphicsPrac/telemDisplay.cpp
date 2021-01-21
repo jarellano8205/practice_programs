@@ -1,38 +1,29 @@
 #include "telemDisplay.h"
+#include <iostream>
 
 TelemDisplay::TelemDisplay() {}
 
-void TelemDisplay::displayTime()
+void TelemDisplay::displayTasks()
+{
+   int y = 485;
+   glClear(GL_COLOR_BUFFER_BIT);
+   for (auto items : completedTasks)
+   {
+      y -= 15; 
+      DrawTextString(items, 5, y, Green);
+   }
+   glutSwapBuffers();
+}
+
+void TelemDisplay::addTask()
 {
    StopWatch task;
    std::stringstream report;
-   task.start("create int array");
-   
-   int numberArray[1000] = {0};
 
+   task.start("some task");
+   int a = 5;
    task.stop();
    report = task.reportSS();
-   glClear(GL_COLOR_BUFFER_BIT);
-   DrawTextString(report.str().c_str(), 5, 460, Green);
+   completedTasks.push_back(report.str());
    task.reset();
-   task.start("assign numbers to array");
-
-   for(int i = 0; i < 1000 ; i++)
-   {
-      numberArray[i] = i;
-   }
-
-   task.stop();
-   report = task.reportSS();
-   DrawTextString(report.str().c_str(), 5, 445, Green);
-   task.reset();
-
-   task.start("some other task");
-   std::string someString = "hello there";
-   task.stop();
-   report = task.reportSS();
-   DrawTextString(report.str().c_str(), 5, 430, Green);
-   task.reset();
-
-   glutSwapBuffers();
 }
