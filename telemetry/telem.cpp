@@ -24,21 +24,25 @@ void StopWatch::report()
 {
    std::cout << "completed " << taskDescription << std::endl;
    std::cout << std::fixed << dur.count() << "s\t\t" 
-             << std::ctime(&timeCompleted) << std::endl;
+      << std::ctime(&timeCompleted) << std::endl;
 }
 
 void StopWatch::reportToFile(std::string fileName)
 {
    std::ofstream report;
-   
-   report.open(fileName, std::ios::app);
+   try
+   { 
+      report.open(fileName, std::ios::app);
 
-   if(!report.is_open())
-   {
-      std::cout << "error opening file::" << fileName << std::endl;
-      exit(1);
+      if (!report.is_open())
+      {
+         throw "error opening file"; 
+      }
    }
-
+   catch(const char* error)
+   {
+      std::cout << error << std::endl;
+   }
    report << "completed " << taskDescription << std::endl;
    report << std::fixed << dur.count() << "s\t\t"
           << std::ctime(&timeCompleted) << std::endl;
