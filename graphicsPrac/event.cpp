@@ -58,15 +58,17 @@ void KeyboardEvent::doAction(TelemDisplay &telemDisplay)
    if (key == RETURN_KEY)
    {
       telemDisplay.addTask();
+      telemDisplay.importTaskData();
    }
 
    if (key == R_KEY)
    {
-      telemDisplay.resetTasks();
+      telemDisplay.resetTaskList();
    }
 }
 
 void ProgStart::doAction(TelemDisplay &telemDisplay)
 {
    glutSetWindowTitle("FoxProwl - Telemetry");
+   glutPostRedisplay();
 }
