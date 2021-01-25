@@ -1,17 +1,5 @@
 #include "util.h"
 
-
-/***************************************************************************//**
- * @brief Main event dispatch function
- *
- * Any events to which the application has subscribed will be routed through
- * this function.  If you need to maintain application state, this is a good
- * place to do so.  All events have an 'action' method which take a Game
- * object.  The Game class can react to the various events by inspecting the
- * event object that is currently acting.
- *
- * @param[in] event - Pointer to an Event object.
- ******************************************************************************/
 void utilityCentral(Event *event)
 {
    static TelemDisplay telemDisplay;
