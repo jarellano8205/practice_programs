@@ -4,16 +4,19 @@
 #include "graphics.h"
 #include "telem.h"
 #include <vector>
+#include <map>
 
 class TelemDisplay
 {
    std::vector<std::string> completedTasks;
+   std::map<std::string, std::vector<double>> tasks;
 public:
    TelemDisplay();
 
    void displayTasks();
    void addTask();
-   void resetTasks();
+   void resetTaskList();
+   void importTaskData();
 };
 
 #endif
