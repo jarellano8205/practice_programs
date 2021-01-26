@@ -13,7 +13,11 @@ const float Cyan[]  = { 0.0, 1.0, 1.0 };
 const float Yellow[]    = { 1.0, 1.0, 0.0 };
 const float White[] = { 1.0, 1.0, 1.0 };
 const float Orange[] = { 1.0, 0.5, 0.0 };
+const float Gray[] = {.55, .55, .55};
+const float DarkGray[] = { .32, .32, .32};
 
-void DrawTextString( std::string str, int x, int y, const float color[] );
+void DrawFilledRectangle(float x1, float y1, float x2, float y2,
+   const float color[]);
+void DrawTextString(std::string str, int x, int y, const float color[]);
 
 #endif

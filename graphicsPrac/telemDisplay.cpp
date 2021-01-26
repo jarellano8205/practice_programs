@@ -4,19 +4,19 @@ TelemDisplay::TelemDisplay() {}
 
 void TelemDisplay::displayTasks()
 {
-   int x = 5;
-   int x2 = 200;
-   int x3 = 335;
+   int x = 15;
+   int x2 = 215;
    int y = (glutGet(GLUT_WINDOW_HEIGHT));
    int y2 = (glutGet(GLUT_WINDOW_HEIGHT)) - 15;
-   int y3 = (glutGet(GLUT_WINDOW_HEIGHT)) - 30;
    glClear(GL_COLOR_BUFFER_BIT);
 
+   DrawFilledRectangle(10, glutGet(GLUT_WINDOW_HEIGHT) - 10, 365, 10, DarkGray);
+ 
    for (auto items : completedTasks)
    {
-      y -= 15;
+      y -= 25;
 
-      if (y < 15)
+      if (y < 25)
       {
          resetTaskList();
       }
@@ -35,17 +35,6 @@ void TelemDisplay::displayTasks()
       DrawTextString(items.first, x2, y2, Orange);
       DrawTextString(std::to_string(items.second.size()), x2 + 160, y2, Orange);
       
-      for (auto second : items.second)
-      {
-         x3 += 65;
-
-         if (x3 >= glutGet(GLUT_WINDOW_WIDTH) - 40)
-         {
-            y3 -= 20;
-            x3 = 400;
-         }
-         DrawTextString(std::to_string(second) + "s", x3, y3, Orange);
-      } 
    }
    glutSwapBuffers();
 }
