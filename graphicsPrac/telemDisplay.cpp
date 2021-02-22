@@ -11,7 +11,7 @@ void TelemDisplay::displayTasks()
    glClear(GL_COLOR_BUFFER_BIT);
 
    DrawFilledRectangle(10, glutGet(GLUT_WINDOW_HEIGHT) - 10, 365, 10, DarkGray);
- 
+
    for (auto items : completedTasks)
    {
       y -= 25;
@@ -24,7 +24,7 @@ void TelemDisplay::displayTasks()
       DrawTextString(items, x, y, Orange);
    }
 
-   for (auto items : tasks)
+   for (auto items : importedTasks)
    {
       x2 += 200;
 
@@ -34,8 +34,20 @@ void TelemDisplay::displayTasks()
       }
       DrawTextString(items.first, x2, y2, Orange);
       DrawTextString(std::to_string(items.second.size()), x2 + 160, y2, Orange);
-      
+
+      for (auto timePoint : items.second)
+      {
+         y2 -= 25;
+         DrawTextString(std::to_string(timePoint), x2, y2, Orange);
+
+         if (y2 <= 15)
+         {
+            y2 = glutGet(GLUT_WINDOW_HEIGHT) - 15;
+            x2 += 75;
+         }
+      }
    }
+
    glutSwapBuffers();
 }
 
@@ -45,8 +57,10 @@ void TelemDisplay::addTask()
    std::stringstream report;
 
    task.start("some task");
+
    int a = 5;
    a += 5;
+
    task.stop();
    task.reportToFile("output");
    report = task.reportSS();
@@ -66,7 +80,7 @@ void TelemDisplay::importTaskData()
    std::string taskTime;
    double timeCompleted = 0.0;
 
-   tasks.clear();
+   importedTasks.clear();
  
    try
    {
@@ -83,10 +97,12 @@ void TelemDisplay::importTaskData()
       {
          getline(importFile, taskDescription);
          getline(importFile, taskTime, 's');
-
+         // grabs the task description and time from the import data file then
+         // converts the string into a double to push it on the vector of time
+         // points for the task.
          timeCompleted = stod(taskTime);
 
-         tasks[taskDescription].push_back(timeCompleted);
+         importedTasks[taskDescription].push_back(timeCompleted);
 
          importFile.ignore(1, 's');
       }
