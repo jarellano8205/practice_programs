@@ -1,7 +1,7 @@
 #include "graphics.h"
 
-void DrawFilledRectangle(float x1, float y1, float x2, float y2,
-   const float color[])
+void DrawFilledRectangle (float x1, float y1, float x2, float y2,
+   const float color[] )
 {
    glColor3fv( color );
    glBegin( GL_POLYGON );
@@ -13,12 +13,12 @@ void DrawFilledRectangle(float x1, float y1, float x2, float y2,
    glFlush();
 }
 
-void DrawTextString(std::string str, int x, int y, const float color[] )
+void DrawTextString( std::string string, int x, int y, const float color[] )
 {
    glColor3fv( color );
    glRasterPos2i( x, y );
-   for (auto x : str)
+   for ( auto character : string )
    {
-	   glutBitmapCharacter( GLUT_BITMAP_HELVETICA_12, x );
+	   glutBitmapCharacter( GLUT_BITMAP_HELVETICA_12, character );
    }
 }

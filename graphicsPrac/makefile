@@ -4,7 +4,8 @@ SOURCE = callbacks.cpp \
          main.cpp \
          util.cpp \
 	      graphics.cpp \
-         telem.cpp
+         telem.cpp \
+         twoSum.cpp
 
 OBJS = $(SOURCE:.cpp=.o)
 

@@ -1,4 +1,5 @@
 #include "telemDisplay.h"
+#include "twoSum.h"
 
 TelemDisplay::TelemDisplay() {}
 
@@ -10,7 +11,7 @@ void TelemDisplay::displayTasks()
    int y2 = (glutGet(GLUT_WINDOW_HEIGHT)) - 15;
    glClear(GL_COLOR_BUFFER_BIT);
 
-   DrawFilledRectangle(10, glutGet(GLUT_WINDOW_HEIGHT) - 10, 365, 10, DarkGray);
+   DrawFilledRectangle(10, glutGet(GLUT_WINDOW_HEIGHT) - 10, 400, 10, DarkGray);
 
    for (auto items : completedTasks)
    {
@@ -33,7 +34,7 @@ void TelemDisplay::displayTasks()
          x2 = 400;
       }
       DrawTextString(items.first, x2, y2, Orange);
-      DrawTextString(std::to_string(items.second.size()), x2 + 160, y2, Orange);
+      DrawTextString(std::to_string(items.second.size()), x2 + 200, y2, Orange);
 
       for (auto timePoint : items.second)
       {
@@ -56,13 +57,31 @@ void TelemDisplay::addTask()
    StopWatch task;
    std::stringstream report;
 
-   task.start("some task");
+   task.start("two sum algorithm");
 
-   int a = 5;
-   a += 5;
+   std::vector<int> numbers = {2, 7, 11, 15};
+   std::vector<int> solution;
+   int target = 9;
+
+   try
+   {
+      solution = (addNumbers(numbers, target));
+      /*std::cout << "elements that sum = target: ";
+
+      for (auto items : solution)
+      {
+         std::cout << items << " ";
+      }
+      std::cout << std::endl;*/
+   }
+   catch(const char* error)
+   {
+      std::cout << error << std::endl;
+   }
 
    task.stop();
    task.reportToFile("output");
+   // set reportStringStream to formatted string stream then push it as a string
    report = task.reportSS();
    completedTasks.push_back(report.str());
    task.reset();
