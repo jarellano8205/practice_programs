@@ -1,22 +1,23 @@
 #include "telemDisplay.h"
+#include "twoSum.h"
 
 TelemDisplay::TelemDisplay() {}
 
 void TelemDisplay::displayTasks()
 {
-   int x = 5;
-   int x2 = 200;
-   int x3 = 335;
+   int x = 15;
+   int x2 = 215;
    int y = (glutGet(GLUT_WINDOW_HEIGHT));
    int y2 = (glutGet(GLUT_WINDOW_HEIGHT)) - 15;
-   int y3 = (glutGet(GLUT_WINDOW_HEIGHT)) - 30;
    glClear(GL_COLOR_BUFFER_BIT);
+
+   DrawFilledRectangle(10, glutGet(GLUT_WINDOW_HEIGHT) - 10, 400, 10, DarkGray);
 
    for (auto items : completedTasks)
    {
-      y -= 15;
+      y -= 25;
 
-      if (y < 15)
+      if (y < 25)
       {
          resetTaskList();
       }
@@ -24,7 +25,7 @@ void TelemDisplay::displayTasks()
       DrawTextString(items, x, y, Orange);
    }
 
-   for (auto items : tasks)
+   for (auto items : importedTasks)
    {
       x2 += 200;
 
@@ -33,20 +34,21 @@ void TelemDisplay::displayTasks()
          x2 = 400;
       }
       DrawTextString(items.first, x2, y2, Orange);
-      DrawTextString(std::to_string(items.second.size()), x2 + 160, y2, Orange);
-      
-      for (auto second : items.second)
-      {
-         x3 += 65;
+      DrawTextString(std::to_string(items.second.size()), x2 + 200, y2, Orange);
 
-         if (x3 >= glutGet(GLUT_WINDOW_WIDTH) - 40)
+      for (auto timePoint : items.second)
+      {
+         y2 -= 25;
+         DrawTextString(std::to_string(timePoint), x2, y2, Orange);
+
+         if (y2 <= 15)
          {
-            y3 -= 20;
-            x3 = 400;
+            y2 = glutGet(GLUT_WINDOW_HEIGHT) - 15;
+            x2 += 75;
          }
-         DrawTextString(std::to_string(second) + "s", x3, y3, Orange);
-      } 
+      }
    }
+
    glutSwapBuffers();
 }
 
@@ -55,11 +57,31 @@ void TelemDisplay::addTask()
    StopWatch task;
    std::stringstream report;
 
-   task.start("some task");
-   int a = 5;
-   a += 5;
+   task.start("two sum algorithm");
+
+   std::vector<int> numbers = {2, 7, 11, 15};
+   std::vector<int> solution;
+   int target = 9;
+
+   try
+   {
+      solution = (addNumbers(numbers, target));
+      /*std::cout << "elements that sum = target: ";
+
+      for (auto items : solution)
+      {
+         std::cout << items << " ";
+      }
+      std::cout << std::endl;*/
+   }
+   catch(const char* error)
+   {
+      std::cout << error << std::endl;
+   }
+
    task.stop();
    task.reportToFile("output");
+   // set reportStringStream to formatted string stream then push it as a string
    report = task.reportSS();
    completedTasks.push_back(report.str());
    task.reset();
@@ -77,7 +99,7 @@ void TelemDisplay::importTaskData()
    std::string taskTime;
    double timeCompleted = 0.0;
 
-   tasks.clear();
+   importedTasks.clear();
  
    try
    {
@@ -94,10 +116,12 @@ void TelemDisplay::importTaskData()
       {
          getline(importFile, taskDescription);
          getline(importFile, taskTime, 's');
-
+         // grabs the task description and time from the import data file then
+         // converts the string into a double to push it on the vector of time
+         // points for the task.
          timeCompleted = stod(taskTime);
 
-         tasks[taskDescription].push_back(timeCompleted);
+         importedTasks[taskDescription].push_back(timeCompleted);
 
          importFile.ignore(1, 's');
       }

@@ -9,7 +9,7 @@
 class TelemDisplay
 {
    std::vector<std::string> completedTasks;
-   std::map<std::string, std::vector<double>> tasks;
+   std::map<std::string, std::vector<double>> importedTasks;
 public:
    TelemDisplay();
 
