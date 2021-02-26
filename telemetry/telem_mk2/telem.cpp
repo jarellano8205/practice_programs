@@ -20,11 +20,7 @@ void StopWatch::reset()
    dur = std::chrono::duration<double>::zero();
 }
 
-double StopWatch::reportDuration()
-{
-   return double(dur.count());
-}
-void StopWatch::reportToConsole()
+void StopWatch::report()
 {
    std::cout << "completed " << taskDescription << std::endl;
    std::cout << std::fixed << dur.count() << "s\t\t" 

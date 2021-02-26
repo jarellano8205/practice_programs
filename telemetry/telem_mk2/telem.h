@@ -11,7 +11,7 @@
 class StopWatch
 {
    std::chrono::system_clock::time_point timeLoc;
-   std::chrono::duration<double> dur = std::chrono::duration<double>::zero();
+   std::chrono::duration<double> dur;
    std::string taskDescription = "";
    std::time_t timeCompleted;
 public:
@@ -19,8 +19,7 @@ public:
    void start(std::string descr);
    void stop();
    void reset(); 
-   double reportDuration(); 
-   void reportToConsole();
+   void report();
    void reportToFile(std::string fileName);
    std::stringstream reportSS(); 
 };
