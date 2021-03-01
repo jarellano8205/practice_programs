@@ -1,17 +1,5 @@
 #include "util.h"
 
-
-/***************************************************************************//**
- * @brief Main event dispatch function
- *
- * Any events to which the application has subscribed will be routed through
- * this function.  If you need to maintain application state, this is a good
- * place to do so.  All events have an 'action' method which take a Game
- * object.  The Game class can react to the various events by inspecting the
- * event object that is currently acting.
- *
- * @param[in] event - Pointer to an Event object.
- ******************************************************************************/
 void utilityCentral(Event *event)
 {
    static TelemDisplay telemDisplay;
@@ -21,10 +9,8 @@ void utilityCentral(Event *event)
    delete event;
 }
 
-/***************************************************************************//**
- * Initialize glut callback functions, set the display mode, create a window
- ******************************************************************************/
-void initOpenGL(int argc, char** argv, int wCols, int wRows)
+//  Initialize glut callback functions, set the display mode, create a window
+void initOpenGL(int argc, char** argv, int width, int height)
 {
    glutInit(&argc, argv);
 
@@ -34,13 +20,13 @@ void initOpenGL(int argc, char** argv, int wCols, int wRows)
    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
 
 // Set window size and position
-   glutInitWindowSize(wCols, wRows);
+   glutInitWindowSize(width, height);
 
    glutInitWindowPosition(100, 100);
 
    glutCreateWindow(argv[0]);
 
-// Subscribe to GLUT events
+// Subscribed GLUT events
 
    glutDisplayFunc(display);
 

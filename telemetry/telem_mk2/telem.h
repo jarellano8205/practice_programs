@@ -2,30 +2,26 @@
 #define TELEM_H
 #include <chrono>
 #include <ctime>
-#include <fstream>
 #include <iomanip>
 #include <iostream>
-#include <sstream>
+#include <fstream>
 #include <string>
+#include <sstream>
 
 class StopWatch
 {
-   std::chrono::system_clock::time_point startTime;
-   
-   std::chrono::duration<double> taskDuration =
-   std::chrono::duration<double>::zero();
-   
+   std::chrono::system_clock::time_point timeLoc;
+   std::chrono::duration<double> dur;
    std::string taskDescription = "";
    std::time_t timeCompleted;
 public:
    StopWatch();
-   void start(std::string description);
+   void start(std::string descr);
    void stop();
    void reset(); 
-   double reportDuration(); 
-   void reportToConsole();
+   void report();
    void reportToFile(std::string fileName);
-   std::stringstream reportToSS(); 
+   std::stringstream reportSS(); 
 };
 
 #endif
