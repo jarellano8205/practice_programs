@@ -59,7 +59,7 @@ TEST_CASE("reset returns duration to zero")
 TEST_CASE("reportToSS returns the report for the task as a string stream")
 {
    StopWatch clock;
-   std::stringstream testStream;
+   
    std::string testString = "";
 
    clock.start("test timer");
@@ -72,10 +72,8 @@ TEST_CASE("reportToSS returns the report for the task as a string stream")
 
    clock.stop();
 
-   testStream = clock.reportToSS();
- 
-   testString = testStream.str();
- 
+   testString = clock.reportToSS().str();
+
    REQUIRE(testString.size() > 0);
 }
    
