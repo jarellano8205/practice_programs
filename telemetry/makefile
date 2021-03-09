@@ -13,9 +13,6 @@ LINK = g++
 CFLAGS = -Wall -O3 -std=c++11 -I. 
 CXXFLAGS = $(CFLAGS)
 
-# Fill in special libraries needed here
-LIBS = -lglut -lGL -lGLU -lpthread
-
 .PHONY: clean
 
 # Targets include all, clean, debug, tar
