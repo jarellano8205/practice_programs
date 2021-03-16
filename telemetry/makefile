@@ -1,6 +1,6 @@
 SOURCE = main.cpp \
-			telem.cpp \
-         telemTest.cpp
+			telem.cpp
+
 OBJS = $(SOURCE:.cpp=.o)
 
 #GNU C/C++ Compiler
