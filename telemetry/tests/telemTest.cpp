@@ -2,7 +2,7 @@
 #define TELEMTEST
 
 #include <catch2/catch.hpp> 
-#include "telem.h"
+#include "../telem.h"
 
 TEST_CASE("create StopWatch object")
 {
