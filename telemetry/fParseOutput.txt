@@ -1,0 +1,12 @@
+completed create integer array 20 elements all set to 0 , count: 12
+Average duration: 0.000004
+
+completed create integer array 200 elements all set to 0 , count: 12
+Average duration: 0.000001
+
+completed create integer array 2000 elements and gen. random numbers , count: 12
+Average duration: 0.000123
+
+completed print 2000 random numbers into numberOutput file , count: 12
+Average duration: 0.000972
+
