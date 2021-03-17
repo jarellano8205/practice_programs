@@ -1,30 +1,26 @@
-SOURCE = main.cpp \
-			telem.cpp \
+MAIN = main.cpp
+SOURCE = telem.cpp \
 			parser.cpp
 
-OBJS = $(SOURCE:.cpp=.o)
+SOURCE_OBJS = $(SOURCE:.cpp=.o)
 
-#GNU C/C++ Compiler
-GCC = g++
+TESTS = tests/main.cpp \
+        tests/telemTest.cpp \
+        telem.cpp
 
-# GNU C/C++ Linker
-LINK = g++
-
-# Compiler flags
-CFLAGS = -Wall -O3 -std=c++17 -I. 
-CXXFLAGS = $(CFLAGS)
-
-.PHONY: clean
-
-# Targets include all, clean, debug, tar
-
+TESTS_OBJS = $(TESTS:.cpp=.o)
+ 
 all : main
 
-main: $(OBJS)
-	$(LINK) -o $@ $^ $(LIBS)
+main: $(SOURCE_OBJS) $(MAIN)
+	g++ -o $@ -Wall -O3 -std=c++17 -I. $^
+
+tests: $(TESTS_OBJS)
+	g++ -o test -Wall -O3 -std=c++17 -I. $^
 
 clean:
 	rm -rf *.o *.d core main
+	rm -rf tests/*.o tests/*.d test
 
 debug: CXXFLAGS = -DDEBUG -g -std=c++11
 debug: main
@@ -36,14 +32,8 @@ help:
 	@echo "	make main  - same as make all"
 	@echo "	make all   - builds the main target"
 	@echo "	make       - same as make all"
+	@echo "  make tests - builds the test target"
 	@echo "	make clean - remove .o .d core main"
 	@echo "	make debug - make all with -g and -DDEBUG"
 	@echo "	make tar   - make a tarball of .cpp and .h files"
 	@echo "	make help  - this message"
-
--include $(SOURCE:.cpp=.d)
-
-%.d: %.cpp
-	@set -e; rm -rf $@;$(GCC) -MM $< $(CXXFLAGS) > $@
-
-
