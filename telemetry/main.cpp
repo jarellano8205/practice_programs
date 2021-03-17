@@ -1,59 +1,37 @@
 #include "telem.h"
-#include <stdlib.h> // included for: std::cout << fixed
-#include <time.h> // included for: srand time(0)
+#include "parser.h"
 
-int main(int argc, char *argv[])
+int main( int argc, char *argv[])
 {
-   StopWatch sw;
-   srand (time(0));
-   std::ofstream numberOutputFile;
-   std::stringstream sstream;
+   std::ofstream exportParse;
+   std::map<std::string, std::vector<double>> importedData;
+   double averageDuration = 0.0;
 
-   numberOutputFile.open("numberOutput");
-   
-   sw.start("create integer array 20 elements all set to 0");
+   importedData = parseData("output");
 
-   int numberArray[20] = {0};
+   exportParse.open("fParseOutput.txt");
 
-   sw.stop();
-   sw.reportToFile("output");
-   sw.reset();
-   
-   sw.start("create integer array 200 elements all set to 0");
-
-   int numberArrayTwo[200] = {0};
-
-   sw.stop();
-   sw.reportToFile("output");
-   sw.reset();
-   
-   sw.start("create integer array 2000 elements and gen. random numbers");
-
-   int numberArrayThree[2000] = {0};
-
-   for (int i = 0 ; i < 2000 ; i++)
+   if ( !exportParse.is_open() )
    {
-      numberArrayThree[i] = rand() % 10000;
+      exit(1);
    }
 
-   sw.stop();
-   sw.reportToFile("output");
-   sw.reset();
-
-   sw.start("print 2000 random numbers into numberOutput file");
-
-   for (int i = 0 ; i < 2000 ; i++)
+   for ( auto items : importedData )
    {
-      numberOutputFile << numberArrayThree[i] << "\n";
+      exportParse << items.first << " , count: " << items.second.size() << "\n";
+
+      for ( auto timePoint : items.second )
+      {
+         averageDuration += timePoint;
+      }
+
+      averageDuration = averageDuration / items.second.size();
+
+      exportParse << "Average duration: " << std::fixed << averageDuration 
+      << "\n\n";
    }
-   numberOutputFile << std::endl;
-   numberOutputFile.close();
 
-   sw.stop();
-   sw.reportToFile("output");
-   sw.reset();
+   exportParse.close();
 
-   sstream = sw.reportToSS();
-   std::cout << sstream.str().c_str();
    return 0;
 }

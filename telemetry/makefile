@@ -1,5 +1,6 @@
 SOURCE = main.cpp \
-			telem.cpp
+			telem.cpp \
+			parser.cpp
 
 OBJS = $(SOURCE:.cpp=.o)
 
@@ -10,7 +11,7 @@ GCC = g++
 LINK = g++
 
 # Compiler flags
-CFLAGS = -Wall -O3 -std=c++11 -I. 
+CFLAGS = -Wall -O3 -std=c++17 -I. 
 CXXFLAGS = $(CFLAGS)
 
 .PHONY: clean
