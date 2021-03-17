@@ -4,7 +4,7 @@
 #include <catch2/catch.hpp> 
 #include "../telem.h"
 
-TEST_CASE("create StopWatch object")
+TEST_CASE("create StopWatch object", "[telemetry]")
 {
    StopWatch *clock = nullptr;
    double time = 0.0;
@@ -20,7 +20,7 @@ TEST_CASE("create StopWatch object")
    delete clock;
 }
 
-TEST_CASE("reportDuration returns duration as a double")
+TEST_CASE("reportDuration returns duration as a double", "[telemetry]")
 {
    StopWatch clock;
 
@@ -34,7 +34,7 @@ TEST_CASE("reportDuration returns duration as a double")
    REQUIRE(time >= 0);
 }
 
-TEST_CASE("reset returns duration to zero")
+TEST_CASE("reset returns duration to zero", "[telemetry]")
 {
    StopWatch clock;
 
@@ -56,7 +56,8 @@ TEST_CASE("reset returns duration to zero")
    REQUIRE(time == 0);
 }
 
-TEST_CASE("reportToSS returns the report for the task as a string stream")
+TEST_CASE("reportToSS returns the report for the task as a string stream",
+   "[telemetry]")
 {
    StopWatch clock;
    

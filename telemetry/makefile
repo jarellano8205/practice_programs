@@ -6,7 +6,9 @@ SOURCE_OBJS = $(SOURCE:.cpp=.o)
 
 TESTS = tests/main.cpp \
         tests/telemTest.cpp \
-        telem.cpp
+		  tests/parseTest.cpp \
+        telem.cpp \
+        parser.cpp
 
 TESTS_OBJS = $(TESTS:.cpp=.o)
  
